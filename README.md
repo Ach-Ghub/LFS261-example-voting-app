@@ -60,3 +60,7 @@ Note
 The voting application only accepts one vote per client. It does not register votes if a vote has already been submitted from a client.
 
 [![Build Status](http://136.67.41.99:8080/job/instavote/job/worker-build/badge/icon)](http://136.67.41.99:8080/job/instavote/job/worker-build/)
+
+Test badge
+
+[![Build Status](http://136.67.41.99:8080/job/instavote/job/worker-test&subject=UnitTest/badge/icon)](http://136.67.41.99:8080/job/instavote/job/worker-test/)

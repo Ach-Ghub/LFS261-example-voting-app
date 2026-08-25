@@ -69,3 +69,4 @@ Test badge
 Test Branch Policy
 >>>>>>> 7a5fa06 (Test Branch Policy)
 testing Branch Policy
+New line from branch pull

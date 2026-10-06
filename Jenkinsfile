@@ -1,6 +1,7 @@
 
 pipeline {
 
+
   agent none
 
   stages {
@@ -235,6 +236,7 @@ pipeline {
   post {
     always {
       echo 'Building mono pipeline for voting app is completed.'
+
     }
   }
 }

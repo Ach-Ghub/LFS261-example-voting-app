@@ -77,10 +77,11 @@ pipeline {
       steps {
         echo 'Packaging worker app with docker'
         script {
+          def safeBranchName = env.BRANCH_NAME.replaceAll('/', '-')      
           docker.withRegistry('https://index.docker.io/v1/', 'dockerlogin') {
             def workerImage = docker.build("achdhub/worker:v${env.BUILD_ID}", './worker')
             workerImage.push()
-            workerImage.push("${env.BRANCH_NAME}")
+            workerImage.push("${safeBranchName}")
             workerImage.push('latest')
           }
         }
@@ -136,10 +137,11 @@ pipeline {
       steps {
         echo 'Packaging result app with docker'
         script {
+          def safeBranchName = env.BRANCH_NAME.replaceAll('/', '-')
           docker.withRegistry('https://index.docker.io/v1/', 'dockerlogin') {
             def resultImage = docker.build("achdhub/result:v${env.BUILD_ID}", './result')
             resultImage.push()
-            resultImage.push("${env.BRANCH_NAME}")
+            resultImage.push("${safeBranchName}")
             resultImage.push('latest')
           }
         }
@@ -207,11 +209,12 @@ pipeline {
       steps {
         echo 'Packaging vote app with docker'
         script {
+          def safeBranchName = env.BRANCH_NAME.replaceAll('/', '-')
           docker.withRegistry('https://index.docker.io/v1/', 'dockerlogin') {
             // ./vote is the path to the Dockerfile that Jenkins will find from the Github repo
             def voteImage = docker.build("achdhub/vote:${env.GIT_COMMIT}", "./vote")
             voteImage.push()
-            voteImage.push("${env.BRANCH_NAME}")
+            voteImage.push("${safeBranchName}")
             voteImage.push("latest")
           }
         }

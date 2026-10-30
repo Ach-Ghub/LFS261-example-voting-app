@@ -40,7 +40,7 @@ pipeline {
       steps {
         echo 'Running Unit Tets on worker app.'
         dir(path: 'worker') {
-          sh 'mvn clean test'
+          sh 'mvn clean test jacoco:report'
         }
 
       }

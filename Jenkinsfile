@@ -253,7 +253,6 @@ pipeline {
             }
         }
     }
-
     stage('deploy to dev') {
       agent any
       when {
@@ -264,13 +263,9 @@ pipeline {
         sh 'docker-compose up -d'
       }
     }
-    
-  }
-  
   post {
     always {
       echo 'Building mono pipeline for voting app is completed.'
-
     }
   }
 }

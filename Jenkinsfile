@@ -6,17 +6,16 @@ pipeline {
 
   stages {
     
-    stage('worker-build') {
+    stage('worker-build-and-test') {
       agent {
         docker {
           image 'maven:3.9.8-sapmachine-21'
           args '-v $HOME/.m2:/root/.m2'
         }
-
       } 
-      // when {
-       // changeset '**/worker/**'
-     // }
+      /* when {
+          changeset '**/worker/**'
+         }
       steps {
         echo 'Compiling worker app..'
         dir(path: 'worker') {
@@ -24,8 +23,6 @@ pipeline {
         }
 
       }
-    }
-
     stage('worker test') {
       agent {
         docker {
@@ -33,18 +30,17 @@ pipeline {
           args '-v $HOME/.m2:/root/.m2'
         }
       }
-     // when {
-       // changeset '**/worker/**'
-     //}
+       when {
+         changeset '**/worker/**'
+       }*/
       steps {
-        echo 'Running Unit Tets on worker app.'
-        dir(path: 'worker') {
+       // echo 'Running Unit Tets on worker app.'
+          echo 'Building, testing, and generating JaCoCo report for worker app..'
+          dir(path: 'worker') {
           sh 'mvn clean test jacoco:report'
-        }
-
+          }
       }
     }
-
     stage('worker-package') {
       agent {
         docker {

@@ -13,9 +13,11 @@ pipeline {
           args '-v $HOME/.m2:/root/.m2'
         }
       } 
-      /* when {
+      /*
+         when {
           changeset '**/worker/**'
          }
+      */
       steps {
         echo 'Compiling worker app..'
         dir(path: 'worker') {
@@ -30,14 +32,17 @@ pipeline {
           args '-v $HOME/.m2:/root/.m2'
         }
       }
+      /*
        when {
          changeset '**/worker/**'
-       }*/
+       }
+       */
       steps {
-       // echo 'Running Unit Tets on worker app.'
-          echo 'Building, testing, and generating JaCoCo report for worker app..'
-          dir(path: 'worker') {
-          sh 'mvn clean test jacoco:report'
+        echo 'Running Unit Tets on worker app.'
+      //echo 'Building, testing, and generating JaCoCo report for worker app..'
+        dir(path: 'worker') {
+        sh 'mvn clean test jacoco:report'
+        sh 'ls -la target/site/jacoco/'
           }
       }
     }

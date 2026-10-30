@@ -13,12 +13,10 @@ pipeline {
           args '-v $HOME/.m2:/root/.m2'
         }
 
-      }
-     // 
-       when {
-        changeset '**/worker/**'
-      }
-     //
+      } 
+      // when {
+       // changeset '**/worker/**'
+     // }
       steps {
         echo 'Compiling worker app..'
         dir(path: 'worker') {
@@ -35,11 +33,9 @@ pipeline {
           args '-v $HOME/.m2:/root/.m2'
         }
       }
-      //
-      when {
-        changeset '**/worker/**'
-      }
-      //
+     // when {
+       // changeset '**/worker/**'
+     //}
       steps {
         echo 'Running Unit Tets on worker app.'
         dir(path: 'worker') {
